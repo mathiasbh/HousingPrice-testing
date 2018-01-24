@@ -84,7 +84,7 @@ ordercol = ['Department', 'Size', 'Rooms', 'Price', 'HomeType', 'NumberHomes',
 df = pd.DataFrame({'Price': price_list,
                    'Size': size_list,
                    'Rooms': room_list,
-                   'Address': address_list,
+                   # 'Address': address_list,
                    'Department': department_list,
                    'HomeType': homeType_list,
                    'NumberHomes': numberOfHomes_list,
@@ -98,14 +98,18 @@ df = pd.DataFrame({'Price': price_list,
 # Process data
 df.Price = df.Price.str.replace(' Kr.', '')
 df.Price = df.Price.str.replace('.', '')
-df.Address = df.Address.str.replace('ø', 'oe')
-df.Address = df.Address.str.replace('å', 'aa')  # Gårdhavehus
-df.Address = df.Address.str.replace('æ', 'ae')
-df.Address = df.Address.str.replace('Ø', 'Oe')
-df.Address = df.Address.str.replace('Å', 'Aa')
-df.Address = df.Address.str.replace('Æ', 'Ae')
-df.Address = df.Address.str.replace('ü', 'u')
-df.HomeType = df.HomeType.str.replace('æ', 'ae')
+
+dict_replace = {'í': 'i',
+                'á': 'a',
+                'ø': 'oe',
+                'Ø': 'Oe',
+                'å': 'aa',
+                'Å': 'Aa',
+                'æ': 'ae',
+                'Æ': 'ae',
+                'ü': 'u',
+                'é': 'e'}
+df.replace(dict_replace, regex=True, inplace=True)
 
 
 # Save to txt
