@@ -80,7 +80,7 @@ for pageNum in pageList:
 
 # Pandas
 ordercol = ['Department', 'Size', 'Rooms', 'Price', 'HomeType', 'NumberHomes',
-            'Latitude', 'Longitude', 'Zipcode', 'Link', 'Address']
+            'Latitude', 'Longitude', 'Zipcode', 'Link']
 df = pd.DataFrame({'Price': price_list,
                    'Size': size_list,
                    'Rooms': room_list,
@@ -113,5 +113,5 @@ df.replace(dict_replace, regex=True, inplace=True)
 
 
 # Save to txt
-fmtcol = '%4s,%4s,%4s,%6s,%23s,%4s,%18s,%18s,%6s,%44s,%60s'
+fmtcol = '%4s,%4s,%4s,%6s,%23s,%4s,%18s,%18s,%6s,%44s'
 np.savetxt(r'scrapedata.txt', df.values, fmt=fmtcol, header=' '.join(df.columns.values))
